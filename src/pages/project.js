@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import { PageTemplate } from '../templates/index-page';
+import { PageTemplate } from '../components/Items';
 
 // configured in CMS and represented in markdown
 const pageModel = {
