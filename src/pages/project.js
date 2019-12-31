@@ -1,49 +1,67 @@
 import React from 'react';
 import Layout from '../components/Layout';
+import { PageTemplate } from '../templates/index-page';
 
-const ProjectBlurb = () => {
-	return <p>Project Title (rich text?)</p>;
+// configured in CMS and represented in markdown
+const pageModel = {
+	title: 'Home',
+	layout: 'flexible',
+	heading: null,
+	items: [
+		{
+			type: 'image',
+			link: null,
+			grid: {
+				full: true
+			},
+			src:
+				'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
+		},
+		{
+			type: 'image',
+			link: null,
+			grid: {
+				full: true
+			},
+			src:
+				'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
+		},
+		{
+			type: 'image',
+			link: null,
+			grid: {
+				full: true
+			},
+			src:
+				'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
+		},
+		{
+			type: 'image-text-below',
+			text: 'blurb',
+			link: null,
+			grid: {
+				full: false,
+				columnStart: 6,
+				columnEnd: 10
+			},
+			src:
+				'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
+		},
+		{
+			type: 'image-text-below',
+			text: 'blurb',
+			link: null,
+			grid: {
+				full: true
+			},
+			src:
+				'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
+		}
+	]
 };
 
-const projectItems = [
-	{
-		src:
-			'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation',
-		blurb: 'item description (rich text?)'
-	},
-	{
-		src:
-			'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation',
-		blurb: 'item description (rich text?)'
-	},
-	{
-		src:
-			'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation',
-		blurb: 'item description (rich text?)'
-	},
-	{
-		src:
-			'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation',
-		blurb: 'item description (rich text?)'
-	}
-];
-
-const ProjectItem = ({ src, alt, blurb }) => {
-	return (
-		<div>
-			<img src={src} alt={alt} />
-			<p>{blurb}</p>
-		</div>
-	);
-};
-
-const ProjectPage = () => (
+export default () => (
 	<Layout>
-		<ProjectBlurb />
-		{projectItems.map(props => (
-			<ProjectItem {...props} />
-		))}
+		<PageTemplate {...pageModel} />
 	</Layout>
 );
-
-export default ProjectPage;

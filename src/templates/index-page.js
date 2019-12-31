@@ -1,124 +1,74 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link, graphql } from 'gatsby';
-
 import Layout from '../components/Layout';
-import Features from '../components/Features';
-import BlogRoll from '../components/BlogRoll';
+import React from 'react';
+import { PageTemplate as NewPageTemplate } from '../components/Items';
 
-const images = [
-	{
-		src:
-			'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
-	},
-	{
-		src:
-			'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
-	},
-	{
-		src:
-			'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
-	},
-	{
-		src:
-			'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
-	},
-	{
-		src:
-			'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
-	}
-];
-
-const Image = ({ src, alt, projectId = 'project' }) => {
-	return (
-		<Link to={projectId} className="" title="">
-			<img src={src} alt={alt} />
-		</Link>
-	);
+// configured in CMS and represented in markdown
+const pageModel = {
+	title: 'Home',
+	layout: 'flexible',
+	heading: null,
+	items: [
+		{
+			type: 'image',
+			link: '/project',
+			grid: {
+				full: false,
+				columnStart: 5,
+				columnEnd: 9
+				// or: `span: 4`
+			},
+			src:
+				'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
+		},
+		{
+			type: 'image',
+			link: '/project',
+			grid: {
+				full: false,
+				columnStart: 3,
+				columnEnd: 6
+			},
+			src:
+				'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
+		},
+		{
+			type: 'image',
+			link: '/project',
+			grid: {
+				full: false,
+				columnStart: 7,
+				columnEnd: 10
+			},
+			src:
+				'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
+		},
+		{
+			type: 'image',
+			link: '/project',
+			grid: {
+				full: true
+			},
+			src:
+				'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
+		},
+		{
+			type: 'image',
+			link: '/project',
+			grid: {
+				full: false,
+				columnStart: 2,
+				columnEnd: 9
+			},
+			src:
+				'http://www.kirafreije.com/images/Kira_Freije_Forgetting_and_Unforgetting_2017_Cass_Sculpture_Foundation'
+		}
+	]
 };
 
-export const IndexPageTemplate = ({}) => (
-	<div>
-		{images.map(props => (
-			<Image {...props} />
-		))}
-	</div>
-);
-
-IndexPageTemplate.propTypes = {
-	image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-	title: PropTypes.string,
-	heading: PropTypes.string,
-	subheading: PropTypes.string,
-	mainpitch: PropTypes.object,
-	description: PropTypes.string,
-	intro: PropTypes.shape({
-		blurbs: PropTypes.array
-	})
-};
-
-const IndexPage = ({ data }) => {
-	const { frontmatter } = data.markdownRemark;
-
+export default ({ data }) => {
 	return (
 		<Layout>
-			<IndexPageTemplate
-				image={frontmatter.image}
-				title={frontmatter.title}
-				heading={frontmatter.heading}
-				subheading={frontmatter.subheading}
-				mainpitch={frontmatter.mainpitch}
-				description={frontmatter.description}
-				intro={frontmatter.intro}
-			/>
+			<NewPageTemplate {...pageModel} />
 		</Layout>
 	);
 };
-
-IndexPage.propTypes = {
-	data: PropTypes.shape({
-		markdownRemark: PropTypes.shape({
-			frontmatter: PropTypes.object
-		})
-	})
-};
-
-export default IndexPage;
-
-export const pageQuery = graphql`
-	query IndexPageTemplate {
-		markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
-			frontmatter {
-				title
-				image {
-					childImageSharp {
-						fluid(maxWidth: 2048, quality: 100) {
-							...GatsbyImageSharpFluid
-						}
-					}
-				}
-				heading
-				subheading
-				mainpitch {
-					title
-					description
-				}
-				description
-				intro {
-					blurbs {
-						image {
-							childImageSharp {
-								fluid(maxWidth: 240, quality: 64) {
-									...GatsbyImageSharpFluid
-								}
-							}
-						}
-						text
-					}
-					heading
-					description
-				}
-			}
-		}
-	}
-`;
