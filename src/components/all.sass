@@ -16,3 +16,22 @@ img:hover
 
 footer
   text-align: end
+
+.image
+  margin-bottom: 50px
+
+@media screen and ( min-width: 400px )
+  .full-width
+    grid-column: 1 / 11
+    width: 100vw
+    position: relative
+    left: 50%
+    right: 50%
+    margin-left: -50vw
+    margin-right: -50vw
+
+  .page
+    display: grid
+    grid-template-columns: repeat(10, 10%)
+    width: 95%
+    margin: 0 auto
