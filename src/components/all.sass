@@ -4,9 +4,13 @@ html
 
 a
   color: inherit
+  text-decoration: none
 
 body
   margin: 0
+
+button
+  color: inherit
 
 .open ul
   visibility: visible
@@ -40,6 +44,14 @@ ul
   list-style: none
   padding: 0
   margin: 0
+
+li.active a
+  background: black
+  color: white
+
+nav
+  position: sticky
+  top: 0px
 
 @media screen and ( min-width: 400px )
   .full-width

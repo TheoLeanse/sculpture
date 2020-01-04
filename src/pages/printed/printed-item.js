@@ -210,8 +210,8 @@ const pageModel = {
 	]
 };
 
-export default () => (
-	<Layout>
+export default ({ location }) => (
+	<Layout pathname={location.pathname}>
 		<PageTemplate {...pageModel} />
 	</Layout>
 );

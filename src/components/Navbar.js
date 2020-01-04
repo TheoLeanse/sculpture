@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
 
-export default () => {
+export default ({ pathname }) => {
 	const [isActive, setActive] = useState(false);
 	return (
 		<nav className={isActive ? 'open' : 'closed'}>
 			<div className="bar">
 				<Link to="/" className="" title="">
-					Kira Freije
+					KIRA FREIJE
 				</Link>
 				<button
 					onClick={() => {
@@ -19,14 +19,16 @@ export default () => {
 				</button>
 			</div>
 			<ul>
-				<li>
-					<Link to="/info">Info</Link>
+				<li className={`${pathname === '/info' ? 'active' : ''}`}>
+					<Link to="/info">INFO</Link>
 				</li>
-				<li>
-					<Link to="/contact">Contact</Link>
+				<li className={`${pathname === '/contact' ? 'active' : ''}`}>
+					<Link to="/contact">CONTACT</Link>
 				</li>
-				<li>
-					<Link to="/printed">Printed</Link>
+				<li
+					className={`${pathname.match(/\/printed/) ? 'active' : ''}`}
+				>
+					<Link to="/printed">PRINTED</Link>
 				</li>
 			</ul>
 		</nav>
