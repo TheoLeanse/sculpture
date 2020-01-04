@@ -65,9 +65,9 @@ const pageModel = {
 	]
 };
 
-export default ({ data }) => {
+export default ({ data, location }) => {
 	return (
-		<Layout>
+		<Layout pathname={location.pathname}>
 			<NewPageTemplate {...pageModel} />
 		</Layout>
 	);

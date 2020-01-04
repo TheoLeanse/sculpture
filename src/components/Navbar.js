@@ -1,126 +1,34 @@
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
-import github from '../img/github-icon.svg';
 
-const Navbar = class extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			active: false,
-			navBarActiveClass: ''
-		};
-	}
-
-	toggleHamburger = () => {
-		// toggle the active boolean in the state
-		this.setState(
-			{
-				active: !this.state.active
-			},
-			// after state has been updated,
-			() => {
-				// set the class in state for the navbar accordingly
-				this.state.active
-					? this.setState({
-							navBarActiveClass: 'is-active'
-					  })
-					: this.setState({
-							navBarActiveClass: ''
-					  });
-			}
-		);
-	};
-
-	render() {
-		return (
-			<nav
-				className="navbar is-transparent"
-				role="navigation"
-				aria-label="main-navigation"
-			>
-				<div className="container">
-					<div className="navbar-brand">
-						<Link to="/" className="navbar-item" title="Logo">
-							Kira Freije
-						</Link>
-						{/* Hamburger menu */}
-						<div
-							className={`navbar-burger burger ${this.state.navBarActiveClass}`}
-							data-target="navMenu"
-							onClick={() => this.toggleHamburger()}
-						>
-							<span />
-							<span />
-							<span />
-						</div>
-					</div>
-					<div
-						id="navMenu"
-						className={`navbar-menu ${this.state.navBarActiveClass}`}
-					>
-						<div className="navbar-start has-text-centered">
-							<Link className="navbar-item" to="/about">
-								About
-							</Link>
-							<Link className="navbar-item" to="/products">
-								Products
-							</Link>
-							<Link className="navbar-item" to="/blog">
-								Blog
-							</Link>
-							<Link className="navbar-item" to="/contact">
-								Contact
-							</Link>
-							<Link
-								className="navbar-item"
-								to="/contact/examples"
-							>
-								Form Examples
-							</Link>
-						</div>
-						<div className="navbar-end has-text-centered">
-							<a
-								className="navbar-item"
-								href="https://github.com/netlify-templates/gatsby-starter-netlify-cms"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<span className="icon">
-									<img src={github} alt="Github" />
-								</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</nav>
-		);
-	}
-};
-
-export default () => {
+export default ({ pathname = '/' }) => {
 	const [isActive, setActive] = useState(false);
 	return (
-		<nav>
-			<Link to="/" className="" title="">
-				Kira Freije
-			</Link>
-			<button
-				onClick={() => {
-					setActive(!isActive);
-				}}
-				className="hamburger"
-			>
-				nav
-			</button>
-			<ul className={isActive ? 'visible' : 'hidden'}>
-				<li>
-					<Link to="/info">Info</Link>
+		<nav className={isActive ? 'open' : 'closed'}>
+			<div className="bar">
+				<Link to="/" className="" title="">
+					KIRA FREIJE
+				</Link>
+				<button
+					onClick={() => {
+						setActive(!isActive);
+					}}
+					className="hamburger"
+				>
+					{isActive ? 'close' : 'nav'}
+				</button>
+			</div>
+			<ul>
+				<li className={`${pathname === '/info' ? 'active' : ''}`}>
+					<Link to="/info">INFO</Link>
 				</li>
-				<li>
-					<Link to="/contact">Contact</Link>
+				<li className={`${pathname === '/contact' ? 'active' : ''}`}>
+					<Link to="/contact">CONTACT</Link>
 				</li>
-				<li>
-					<Link to="/printed">Printed</Link>
+				<li
+					className={`${pathname.match(/\/printed/) ? 'active' : ''}`}
+				>
+					<Link to="/printed">PRINTED</Link>
 				</li>
 			</ul>
 		</nav>
