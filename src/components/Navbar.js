@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
 
-export default ({ pathname }) => {
+export default ({ pathname = '/' }) => {
 	const [isActive, setActive] = useState(false);
 	return (
 		<nav className={isActive ? 'open' : 'closed'}>
